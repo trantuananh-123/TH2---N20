@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Maintenance</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Product</h1>
+    <form method="POST"
+          th:object="${product}"
+          th:action="@{'/update-product/' + ${product.code}}"
+          style="margin-bottom: 10px;">
+        <div style="margin-bottom: 10px;">
+            <label for="code" style="margin-right: 55px;">Product Code:</label>
+            <input readonly type="text" id="code" name="code" th:field="*{code}"/>
+            <p th:if="${#fields.hasErrors('code')}" th:errorclass="error" th:errors="*{code}">Code error</p>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label for="description" style="margin-right: 15px;">Product Description:</label>
+            <input type="text" id="description" name="description" th:field="*{description}"/>
+            <p th:if="${#fields.hasErrors('description')}" th:errorclass="error" th:errors="*{description}">Description
+                error</p>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label for="price" style="margin-right: 56px;">Product Price:</label>
+            <input type="text" id="price" name="price" th:field="*{price}"/>
+            <p th:if="${#fields.hasErrors('price')}" th:errorclass="error" th:errors="*{price}">Price error</p>
+        </div>
+        <button type="submit" value="submit">Update product</button>
+    </form>
+    <a href="/view-product">
+        <button>View Products</button>
+    </a>
+</body>
+</html>
