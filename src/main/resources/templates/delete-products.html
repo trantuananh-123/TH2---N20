@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Maintenance</title>
+</head>
+<body>
+    <h1>Product</h1>
+    <form method="POST"
+          th:object="${product}"
+          th:action="@{'/delete-product/' + ${product.code}}"
+          style="margin-bottom: 10px;">
+        <div style="margin-bottom: 10px;">
+            <b>Product Code:</b> <span th:text="${product.code}"></span>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <b>Product Description:</b> <span th:text="${product.description}"></span>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <b>Product Price:</b> <span th:text="'$' + ${product.price}"></span>
+        </div>
+        <button type="submit" value="submit">Yes</button>
+    </form>
+    <a href="/view-product">
+        <button>No</button>
+    </a>
+</body>
+</html>
